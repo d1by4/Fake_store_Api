@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "46deef9e-eca1-42aa-8525-f8c58ed73aff",
+    "name": "Fake store Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32492185"
+  },
+  "item": [
+    {
+      "name": "get product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200 and response is array\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{FakebaseUrl}}/products",
+          "host": [
+            "{{FakebaseUrl}}"
+          ],
+          "path": [
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "failed product id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Product not found\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{FakebaseUrl}}/products/{9999}",
+          "host": [
+            "{{FakebaseUrl}}"
+          ],
+          "path": [
+            "products",
+            "{9999}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create new product",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"QA Test Product\",\r\n    \"price\": 99.99,\r\n    \"description\": \"Created using Postman\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronics\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{FakebaseUrl}}/products",
+          "host": [
+            "{{FakebaseUrl}}"
+          ],
+          "path": [
+            "products"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "FakebaseUrl",
+      "value": ""
+    }
+  ]
+}
